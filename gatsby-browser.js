@@ -1,7 +1,10 @@
 /**
- * Implement Gatsby's Browser APIs in this file.
- *
+ * Implements Gatsby's Browser APIs.
  * See: https://www.gatsbyjs.org/docs/browser-apis/
  */
+import React from "react";
+import App from "./src/components/layout/app";
 
-// You can delete this file if you're not using it
+export const wrapPageElement = ({ element, props }) => {
+  return <App {...props}>{element}</App>;
+};
