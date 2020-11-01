@@ -1,4 +1,5 @@
 module.exports = {
+  pathPrefix: "/color-dashboard",
   siteMetadata: {
     title: `Color Dashboard`,
     description: "Create and share your color palette.",
