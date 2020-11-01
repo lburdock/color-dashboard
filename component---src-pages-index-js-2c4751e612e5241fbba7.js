@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[5],{RXBc:function(e,t,n){"use strict";n.r(t);var a=n("q1tI"),l=n.n(a),c=n("phMG"),r=n("hJsg");t.default=function(){return l.a.createElement(l.a.Fragment,null,l.a.createElement(c.a,{title:"Palette"}),l.a.createElement(r.a,null))}}}]);
+//# sourceMappingURL=component---src-pages-index-js-2c4751e612e5241fbba7.js.map
