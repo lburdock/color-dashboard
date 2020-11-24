@@ -12,16 +12,10 @@ describe("Icon", () => {
   });
 
   it("adds appropriate classnames", () => {
-    const { container } = render(<Icon className="test" icon="fa-copy" />);
+    const { container } = render(<Icon className="test" icon="far fa-copy" />);
     expect(container.firstChild).toHaveClass("far");
     expect(container.firstChild).toHaveClass("fa-copy");
     expect(container.firstChild).toHaveClass("test");
-  });
-
-  it("adds the icon type class correctly", () => {
-    const { container } = render(<Icon icon="fa-copy" type="solid" />);
-    expect(container.firstChild).toHaveClass("fas");
-    expect(container.firstChild).toHaveClass("fa-copy");
   });
 });
 
@@ -29,7 +23,7 @@ describe("IconWrapper", () => {
   it("renders the icon", () => {
     const { getByTestId } = render(
       <IconWrapper data-testid="icon-wrapper-test">
-        <Icon icon="fa-copy" />
+        <Icon icon="far fa-copy" />
       </IconWrapper>
     );
     const icon = getByTestId("icon-wrapper-test");
@@ -43,7 +37,7 @@ describe("IconWrapper", () => {
         data-testid="icon-wrapper-test"
         size="small"
       >
-        <Icon icon="fa-copy" />
+        <Icon icon="far fa-copy" />
       </IconWrapper>
     );
     expect(container.firstChild).toHaveClass("icon");
@@ -54,17 +48,17 @@ describe("IconWrapper", () => {
   it("adds appropriate classnames (default size)", () => {
     const { container } = render(
       <IconWrapper data-testid="icon-wrapper-test">
-        <Icon icon="fa-copy" />
+        <Icon icon="far fa-copy" />
       </IconWrapper>
     );
     expect(container.firstChild).toHaveClass("icon");
-    expect(container.firstChild.firstChild).toHaveClass("fa-large");
+    expect(container.firstChild.firstChild).toHaveClass("fa-lg");
   });
 
   it("adds appropriate classnames (medium size)", () => {
     const { container } = render(
       <IconWrapper data-testid="icon-wrapper-test" size="medium">
-        <Icon icon="fa-copy" />
+        <Icon icon="far fa-copy" />
       </IconWrapper>
     );
     expect(container.firstChild).toHaveClass("icon");
@@ -75,7 +69,7 @@ describe("IconWrapper", () => {
   it("adds appropriate classnames (large size)", () => {
     const { container } = render(
       <IconWrapper data-testid="icon-wrapper-test" size="large">
-        <Icon icon="fa-copy" />
+        <Icon icon="far fa-copy" />
       </IconWrapper>
     );
     expect(container.firstChild).toHaveClass("icon");

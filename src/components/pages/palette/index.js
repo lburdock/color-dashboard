@@ -1,19 +1,17 @@
 import React, { useState } from "react";
 import { useNavigate } from "@reach/router";
 import styled from "styled-components";
-import {
-  useRecentColorsDispatch,
-  useRecentColorsState,
-} from "../../../state/recent-colors-context";
+import { useRecentColorsDispatch } from "../../../state/recent-colors-context";
+import useSearchParameters from "../../../state/search-parameters-hook";
 import { deleteItemByIndex, updateItemByIndex } from "../../../utils/array";
 import { formatColorSearchParams } from "../../../utils/routing";
+import InfoSwatchWithPicker from "../../swatches/info-with-color-picker";
 import AddButton from "./add-button";
-import Swatch from "./swatch";
 
 const ColorPalette = () => {
   const navigate = useNavigate();
   const addRecentColor = useRecentColorsDispatch();
-  const [colors, setColors] = useState(useRecentColorsState());
+  const [colors, setColors] = useState(useSearchParameters());
 
   const handleColorUpdate = updatedColors => {
     navigate(formatColorSearchParams(updatedColors), { replace: true });
@@ -41,7 +39,8 @@ const ColorPalette = () => {
     <StyledWrapper>
       {colors.length
         ? colors.map((color, index) => (
-            <Swatch
+            <InfoSwatchWithPicker
+              className="mr-3 mb-3"
               key={`${color}-${index}`}
               initColor={color}
               onUpdate={updateColor(index)}

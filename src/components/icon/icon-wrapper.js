@@ -9,7 +9,7 @@ const sizeMap = {
   },
   default: {
     wrapper: "",
-    icon: "fa-large",
+    icon: "fa-lg",
   },
   medium: {
     wrapper: "is-medium",

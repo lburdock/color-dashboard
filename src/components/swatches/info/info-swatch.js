@@ -14,8 +14,8 @@ const InfoSwatch = ({ children, className, colorString, name, ...props }) => {
       <StyledInfo className="card-content">
         {name && <StyledName>{name}</StyledName>}
         <InfoItem displayText={colorString} />
-        <InfoItem displayText={rgb.display} copyText={rgb.copy} />
-        <InfoItem displayText={hsl.display} copyText={hsl.copy} />
+        <InfoItem hideMobile displayText={rgb.display} copyText={rgb.copy} />
+        <InfoItem hideMobile displayText={hsl.display} copyText={hsl.copy} />
       </StyledInfo>
       {children}
     </StyledCard>

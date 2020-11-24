@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const InvisibleButton = styled.button`
   background: none;
   border: none;
-  color: ${({ color }) => color || "inherit"};
+  color: ${({ color, theme }) => color || theme.colors.minGraphicalGray};
   cursor: pointer;
   font: inherit;
   line-height: 1;
@@ -12,7 +12,7 @@ export const InvisibleButton = styled.button`
   transition: color 300ms ease-out;
 
   &:hover {
-    color: ${({ hoverColor }) => hoverColor || "inherit"};
+    color: ${({ hoverColor, theme }) => hoverColor || theme.colors.link};
   }
 
   &:focus {
