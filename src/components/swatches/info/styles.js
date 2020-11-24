@@ -1,3 +1,4 @@
+import { IconWrapper } from "../../icon";
 import styled from "styled-components";
 
 export const ColorSwatch = styled.div`
@@ -8,6 +9,10 @@ export const ColorSwatch = styled.div`
 export const StyledCard = styled.div`
   display: inline-block;
   min-width: 15rem;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    min-width: 9rem;
+  }
 `;
 
 export const StyledInfo = styled.div`
@@ -20,8 +25,18 @@ export const StyledInfoItem = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    ${({ hideMobile }) => (hideMobile ? "display: none;" : "")}
+  }
 `;
 
 export const StyledName = styled.div`
   font-weight: bold;
+`;
+
+export const StyledIconWrapper = styled(IconWrapper)`
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    display: none;
+  }
 `;

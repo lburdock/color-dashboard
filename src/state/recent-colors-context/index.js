@@ -6,7 +6,7 @@ const RecentColorsDispatchContext = React.createContext();
 
 export function RecentColorsProvider({ children, initColors = [] }) {
   const [state, setState] = React.useState(initColors);
-  const addColor = (color) => {
+  const addColor = color => {
     setState(Array.from(new Set([...state, color])));
   };
   return (

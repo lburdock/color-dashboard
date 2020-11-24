@@ -2,6 +2,8 @@ import PropTypes from "prop-types";
 import React from "react";
 import { CirclePicker } from "react-color";
 import { useRecentColorsState } from "../../../state/recent-colors-context";
+import ModalContainer from "../components/modal-container";
+
 import {
   ModalBody,
   ModalCard,
@@ -9,11 +11,13 @@ import {
   StyledChromePicker,
 } from "./styles";
 
+/**
+ * Modal that displays a color picker and recently used colors
+ */
 const ColorPickerModal = ({
   closeModal,
   initColor = "#5BCFF3",
   onAddColor,
-  showModal = false,
   ...props
 }) => {
   const recentColors = useRecentColorsState();
@@ -28,18 +32,8 @@ const ColorPickerModal = ({
     onAddColor(color);
   };
 
-  if (!showModal) {
-    return null;
-  }
-
   return (
-    <div className="modal is-active" {...props}>
-      {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
-      <div
-        aria-hidden="true"
-        className="modal-background"
-        onClick={closeModal}
-      />
+    <ModalContainer closeModal={closeModal} {...props}>
       <ModalCard className="modal-card">
         <header className="modal-card-head">
           <p className="modal-card-title">Select a color</p>
@@ -77,7 +71,7 @@ const ColorPickerModal = ({
           </button>
         </ModalFooter>
       </ModalCard>
-    </div>
+    </ModalContainer>
   );
 };
 

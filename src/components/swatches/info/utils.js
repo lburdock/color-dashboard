@@ -1,7 +1,7 @@
 import { parseToRgb } from "polished";
-import { parseToHslFormatted } from "../../../utils/color";
+import parseToHslFormatted from "../../../utils/color/parse-to-hsl-formatted";
 
-export const getRgbText = (colorHex) => {
+export const getRgbText = colorHex => {
   const { red, green, blue } = parseToRgb(colorHex);
   return {
     display: `RGB ${red} ${green} ${blue}`,
@@ -9,7 +9,7 @@ export const getRgbText = (colorHex) => {
   };
 };
 
-export const getHslText = (colorHex) => {
+export const getHslText = colorHex => {
   const { hue, saturation, lightness } = parseToHslFormatted(colorHex);
   return {
     display: `HSL ${hue} ${saturation}% ${lightness}%`,

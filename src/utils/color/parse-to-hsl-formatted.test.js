@@ -1,4 +1,4 @@
-import { parseToHslFormatted } from ".";
+import parseToHslFormatted from "./parse-to-hsl-formatted";
 
 describe("parseToHslFormatted", () => {
   it("correctly formats the hsl values", () => {
