@@ -57,7 +57,10 @@ const AccessibilityChecker = () => {
               <InfoModal />
             </div>
 
-            <AccessibilitySection colors={colors}>
+            <AccessibilitySection
+              key={`${colors[0]}-${colors[1]}`}
+              colors={colors}
+            >
               <InfoSwatchWithPicker
                 className="mr-3 mb-5"
                 key={colors[0]}
