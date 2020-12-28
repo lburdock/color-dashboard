@@ -1,6 +1,6 @@
 import { useNavigate } from "@reach/router";
 import { meetsContrastGuidelines } from "polished";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled, { createGlobalStyle } from "styled-components";
 import useSearchParameters from "../../../state/search-parameters-hook";
 import { useRecentColorsDispatch } from "../../../state/recent-colors-context";
@@ -27,13 +27,20 @@ const AccessibilityChecker = () => {
   const navigate = useNavigate();
   const addRecentColor = useRecentColorsDispatch();
   const searchParamColors = useSearchParameters();
-  const colors =
-    searchParamColors.length === 2 ? searchParamColors : initColors;
+  const [colors, setColors] = useState(initColors);
   const contrastScores = meetsContrastGuidelines(colors[0], colors[1]);
   const accessibilityLevels = getAccessibilityLevels(colors, contrastScores);
 
+  // Update the color with the search parameters after load
+  useEffect(() => {
+    if (searchParamColors.length >= 2) {
+      setColors(searchParamColors.slice(0, 2));
+    }
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
   const handleColorUpdate = updatedColors => {
     navigate(formatColorSearchParams(updatedColors), { replace: true });
+    setColors(updatedColors);
   };
 
   const updateColor = index => newColor => {
