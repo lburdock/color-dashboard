@@ -1,12 +1,17 @@
 import PropTypes from "prop-types";
 import React from "react";
-import { DangerTag, SuccessTag } from "./styles";
+import { DangerTag, SuccessTag, WarningTag } from "./styles";
 
 /**
  * Returns a success or failure tag
  */
-const ContrastStatus = ({ pass }) =>
-  pass ? <SuccessTag>Pass</SuccessTag> : <DangerTag>Fail</DangerTag>;
+const ContrastStatus = ({ pass, useWarning }) => {
+  if (pass) return <SuccessTag>Pass</SuccessTag>;
+
+  if (useWarning) return <WarningTag>Fail</WarningTag>;
+
+  return <DangerTag>Fail</DangerTag>;
+}
 
 export default ContrastStatus;
 

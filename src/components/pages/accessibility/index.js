@@ -96,7 +96,11 @@ const AccessibilityChecker = () => {
       </section>
 
       {accessibilityLevels.map(level => (
-        <section className="hero is-white" key={level.id}>
+        <SectionWrapper
+          className="hero"
+          key={level.id}
+          isHighlighted={level.id === "4.5"}
+        >
           <div className="hero-body">
             <div className="container">
               <h2 className="title is-3">{level.label}</h2>
@@ -123,7 +127,7 @@ const AccessibilityChecker = () => {
               </div>
             </div>
           </div>
-        </section>
+        </SectionWrapper>
       ))}
     </>
   );
@@ -141,4 +145,9 @@ const StyledIconWrapper = styled(IconWrapper)`
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     display: none;
   }
+`;
+
+const SectionWrapper = styled.section`
+  background: ${({ isHighlighted, theme }) =>
+    isHighlighted ? theme.colors.successBackground : "white"};
 `;

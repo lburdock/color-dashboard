@@ -14,6 +14,7 @@ const theme = {
     minGraphicalGray: "#8c8c8c",
     minTextGray: "#707070",
     success: "#008571",
+    successBackground: "#f5fffd",
   },
 };
 

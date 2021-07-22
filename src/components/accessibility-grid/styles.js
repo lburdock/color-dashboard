@@ -35,6 +35,10 @@ export const DangerTag = styled(Tag)`
   background-color: ${({ theme }) => theme.colors.danger};
 `;
 
+export const WarningTag = styled(Tag)`
+  background-color: ${({ theme }) => theme.colors.minTextGray};
+`;
+
 export const SuccessTag = styled(Tag)`
   background-color: ${({ theme }) => theme.colors.success};
 `;
@@ -70,9 +74,18 @@ export const Grid = styled.div`
 
 export const GridHeaderItem = styled.div`
   font-size: 0.8rem;
+  ${({ textAlign }) => textAlign && `text-align: ${textAlign}`};
+`;
+
+export const GridHeaderMain = styled.div`
   font-weight: bold;
   text-transform: uppercase;
-  ${({ textAlign }) => textAlign && `text-align: ${textAlign}`};
+`;
+
+export const GridHeaderSub = styled.div`
+  font-size: 0.7rem;
+  font-style: italic;
+  margin-top: -0.25rem;
 `;
 
 export const GridItem = styled.div`

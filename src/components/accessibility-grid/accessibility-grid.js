@@ -6,6 +6,8 @@ import {
   Example,
   Grid,
   GridHeaderItem,
+  GridHeaderMain,
+  GridHeaderSub,
   GridItem,
   LargeTextBig,
   LargeTextBold,
@@ -21,7 +23,7 @@ import {
 const columns = [
   { text: "Type", align: "left" },
   { text: "AA", align: "center" },
-  { text: "AAA", align: "center" },
+  { text: "AAA", subtext: "(optional)", align: "center" },
   { text: "Example", align: "left" },
 ];
 
@@ -44,7 +46,7 @@ const getRowData = (color, { AA, AAA, AALarge, AAALarge }) => {
         </TextColorProvider>
       ),
       aa: <ContrastStatus pass={AA} />,
-      aaa: <ContrastStatus pass={AAA} />,
+      aaa: <ContrastStatus pass={AAA} useWarning />,
     },
     {
       id: "large",
@@ -57,7 +59,7 @@ const getRowData = (color, { AA, AAA, AALarge, AAALarge }) => {
         </TextColorProvider>
       ),
       aa: AALargeContrastStatus,
-      aaa: <ContrastStatus pass={AAALarge} />,
+      aaa: <ContrastStatus pass={AAALarge} useWarning />,
     },
     {
       id: "ui",
@@ -94,7 +96,8 @@ const AccessibilityGrid = ({
     <Grid {...props}>
       {columns.map(column => (
         <GridHeaderItem key={column.text} textAlign={column.align}>
-          {column.text}
+          <GridHeaderMain>{column.text}</GridHeaderMain>
+          {column.subtext && <GridHeaderSub>{column.subtext}</GridHeaderSub>}
         </GridHeaderItem>
       ))}
       {rowData.map(row => (
