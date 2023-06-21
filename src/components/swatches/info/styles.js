@@ -1,9 +1,10 @@
-import { IconWrapper } from "../../icon";
 import styled from "styled-components";
 
 export const ColorSwatch = styled.div`
   background-color: ${({ colorString }) => colorString};
-  height: 8rem;
+  height: 6.5rem;
+  border-top-left-radius: ${({ theme }) => theme.borderRadius};
+  border-top-right-radius: ${({ theme }) => theme.borderRadius};
 `;
 
 export const StyledCard = styled.div`
@@ -21,22 +22,5 @@ export const StyledInfo = styled.div`
 `;
 
 export const StyledInfoItem = styled.div`
-  align-items: center;
-  display: flex;
-  justify-content: space-between;
   width: 100%;
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    ${({ hideMobile }) => (hideMobile ? "display: none;" : "")}
-  }
-`;
-
-export const StyledName = styled.div`
-  font-weight: bold;
-`;
-
-export const StyledIconWrapper = styled(IconWrapper)`
-  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    display: none;
-  }
 `;

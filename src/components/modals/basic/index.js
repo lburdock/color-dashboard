@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
 import React from "react";
-import styled from "styled-components";
-import ModalContainer from "../components/modal-container";
+import ModalContainer from "../modal-container";
 
 /**
  * Renders the basic modal (white box over with a black overlay)
@@ -9,12 +8,12 @@ import ModalContainer from "../components/modal-container";
 const BasicModal = ({ children, closeModal, ...props }) => {
   return (
     <ModalContainer closeModal={closeModal} {...props}>
-      <ModalContent className="modal-content box">{children}</ModalContent>
+      <div className="modal-content box mb-0">{children}</div>
       <button
         aria-label="Close"
         className="modal-close is-large"
         onClick={closeModal}
-      ></button>
+      />
     </ModalContainer>
   );
 };
@@ -26,7 +25,3 @@ BasicModal.propTypes = {
   closeModal: PropTypes.func.isRequired,
   showModal: PropTypes.bool,
 };
-
-const ModalContent = styled.div`
-  margin-bottom: 0 !important;
-`;

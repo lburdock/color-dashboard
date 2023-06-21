@@ -1,9 +1,9 @@
 import PropTypes from "prop-types";
 import React from "react";
+import { InvisibleButton } from "../../../components/buttons";
+import { Icon, IconWrapper } from "../../../components/icon";
+import ColorPickerModal from "../../../components/modals/color-picker";
 import useModalState from "../../../state/modal-hook";
-import { InvisibleButton } from "../../buttons/invisible";
-import { Icon, IconWrapper } from "../../icon";
-import ColorPickerModal from "../../modals/color-picker";
 
 const AddButton = ({ initColor, onAddColor }) => {
   const { closeModal, openModal, showModal } = useModalState();

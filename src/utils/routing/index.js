@@ -23,11 +23,21 @@ export const getColorsFromSearchParams = searchParams => {
  * @param {Array} colors Array of string color values
  */
 export const formatColorSearchParams = colors => {
-  if (!colors || !colors.length) return "?";
+  if (!colors || !colors.length) return "";
   return (
     "?" +
     queryString.stringify({
-      [COLOR_PARAM_KEY]: colors.map(color => color.replace("#", "")),
+      [COLOR_PARAM_KEY]: colors.map(color =>
+        color.toLowerCase().replace("#", "")
+      ),
     })
   );
+};
+
+export const updateColorSearchParams = colors => {
+  const queryString = formatColorSearchParams(colors);
+  if (!queryString) return;
+  const newUrl =
+    window.location.origin + window.location.pathname + queryString;
+  window.history.pushState({ path: newUrl }, "", newUrl);
 };

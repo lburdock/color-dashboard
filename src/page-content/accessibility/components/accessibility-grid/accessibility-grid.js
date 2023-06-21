@@ -1,49 +1,46 @@
 import PropTypes from "prop-types";
 import React from "react";
-import { Icon } from "../icon";
+import { Icon, IconWrapper } from "../../../../components/icon";
 import ContrastStatus from "./contrast-status";
 import {
   Example,
   Grid,
   GridHeaderItem,
-  GridHeaderMain,
   GridHeaderSub,
-  GridItem,
-  LargeTextBig,
-  LargeTextBold,
-  NormalTextBig,
-  NormalTextBold,
   NotApplicable,
-  Spacer,
-  StyledIconWrapper,
   StyledInput,
-  TextColorProvider,
+  CustomColor,
+  CustomFontSize,
 } from "./styles";
 
+const Spacer = () => <span className="mx-1">•</span>;
+
 const columns = [
-  { text: "Type", align: "left" },
-  { text: "AA", align: "center" },
-  { text: "AAA", subtext: "(optional)", align: "center" },
-  { text: "Example", align: "left" },
+  { text: "Type" },
+  { text: "AA", alignClass: "has-text-centered" },
+  { text: "AAA", subtitle: "(optional)", alignClass: "has-text-centered" },
+  { text: "Example" },
 ];
 
 /**
  * Returns a list of table row data
- * @param {string} color The foreground color
+ * @param {string} foregroundColor The foreground color
  * @param {object} contrastScores An object that shows which contrast guidelines have been met
  */
-const getRowData = (color, { AA, AAA, AALarge, AAALarge }) => {
+const getRowData = (foregroundColor, { AA, AAA, AALarge, AAALarge }) => {
   const AALargeContrastStatus = <ContrastStatus pass={AALarge} />;
   return [
     {
       id: "normal",
       type: "Normal text",
       example: (
-        <TextColorProvider color={color}>
-          <NormalTextBig>17pt text</NormalTextBig>
+        <CustomColor color={foregroundColor}>
+          <CustomFontSize fontSize="17pt">17pt text</CustomFontSize>
           <Spacer />
-          <NormalTextBold>13pt bold text</NormalTextBold>
-        </TextColorProvider>
+          <CustomFontSize className="has-text-weight-bold" fontSize="13pt">
+            13pt bold text
+          </CustomFontSize>
+        </CustomColor>
       ),
       aa: <ContrastStatus pass={AA} />,
       aaa: <ContrastStatus pass={AAA} useWarning />,
@@ -52,11 +49,13 @@ const getRowData = (color, { AA, AAA, AALarge, AAALarge }) => {
       id: "large",
       type: "Large text",
       example: (
-        <TextColorProvider color={color}>
-          <LargeTextBig>18pt text</LargeTextBig>
+        <CustomColor color={foregroundColor}>
+          <CustomFontSize fontSize="18pt">18pt text</CustomFontSize>
           <Spacer />
-          <LargeTextBold>14pt bold text</LargeTextBold>
-        </TextColorProvider>
+          <CustomFontSize className="has-text-weight-bold" fontSize="14pt">
+            14pt bold text
+          </CustomFontSize>
+        </CustomColor>
       ),
       aa: AALargeContrastStatus,
       aaa: <ContrastStatus pass={AAALarge} useWarning />,
@@ -64,7 +63,7 @@ const getRowData = (color, { AA, AAA, AALarge, AAALarge }) => {
     {
       id: "ui",
       type: "UI Component",
-      example: <StyledInput borderColor={color} />,
+      example: <StyledInput color={foregroundColor} />,
       aa: AALargeContrastStatus,
       aaa: <NotApplicable>N/A</NotApplicable>,
     },
@@ -72,9 +71,9 @@ const getRowData = (color, { AA, AAA, AALarge, AAALarge }) => {
       id: "icon",
       type: "Graphical Object",
       example: (
-        <StyledIconWrapper color={color} size="small">
+        <CustomColor as={IconWrapper} color={foregroundColor} size="small">
           <Icon aria-hidden="true" icon="fas fa-heart" />
-        </StyledIconWrapper>
+        </CustomColor>
       ),
       aa: AALargeContrastStatus,
       aaa: <NotApplicable>N/A</NotApplicable>,
@@ -95,19 +94,23 @@ const AccessibilityGrid = ({
   return (
     <Grid {...props}>
       {columns.map(column => (
-        <GridHeaderItem key={column.text} textAlign={column.align}>
-          <GridHeaderMain>{column.text}</GridHeaderMain>
-          {column.subtext && <GridHeaderSub>{column.subtext}</GridHeaderSub>}
+        <GridHeaderItem key={column.text} className={column.alignClass}>
+          <div className="has-text-weight-bold is-uppercase">{column.text}</div>
+          {column.subtitle && (
+            <GridHeaderSub className="is-italic is-size-7">
+              {column.subtitle}
+            </GridHeaderSub>
+          )}
         </GridHeaderItem>
       ))}
       {rowData.map(row => (
         <React.Fragment key={row.id}>
-          <GridItem>{row.type}</GridItem>
-          <GridItem textAlign="center">{row.aa}</GridItem>
-          <GridItem textAlign="center">{row.aaa}</GridItem>
-          <GridItem>
+          <div>{row.type}</div>
+          <div className="has-text-centered">{row.aa}</div>
+          <div className="has-text-centered">{row.aaa}</div>
+          <div>
             <Example background={backgroundColorString}>{row.example}</Example>
-          </GridItem>
+          </div>
         </React.Fragment>
       ))}
     </Grid>

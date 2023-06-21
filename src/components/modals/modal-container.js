@@ -1,6 +1,12 @@
 import PropTypes from "prop-types";
 import React from "react";
-import HideOverflow from "../components/hide-overflow";
+import { createGlobalStyle } from "styled-components";
+
+const HideOverflow = createGlobalStyle`
+  html {
+    overflow: hidden !important;
+  }
+`;
 
 /**
  * Modal container which only renders the component if `showModal` is true

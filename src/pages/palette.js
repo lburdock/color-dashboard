@@ -1,6 +1,6 @@
 import React from "react";
 import Seo from "../components/layout/seo";
-import Palette from "../components/pages/palette";
+import Palette from "../page-content/palette";
 
 const IndexPage = () => {
   return (

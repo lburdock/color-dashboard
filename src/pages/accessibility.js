@@ -1,6 +1,6 @@
 import React from "react";
 import Seo from "../components/layout/seo";
-import AccessibilityChecker from "../components/pages/accessibility";
+import AccessibilityChecker from "../page-content/accessibility";
 
 const AccessibilityPage = () => (
   <>

@@ -5,7 +5,7 @@ import { ThemeProvider } from "styled-components";
 const theme = {
   borderRadius: "0.25rem",
   breakpoints: {
-    mobile: "600px",
+    mobile: "768px",
   },
   colors: {
     danger: "#e8113c",
@@ -14,7 +14,6 @@ const theme = {
     minGraphicalGray: "#8c8c8c",
     minTextGray: "#707070",
     success: "#008571",
-    successBackground: "#f5fffd",
   },
 };
 

@@ -1,29 +1,14 @@
 import styled from "styled-components";
-import { IconWrapper } from "../icon";
 
-export const TextColorProvider = styled.span`
+export const CustomColor = styled.span`
   color: ${({ color }) => color};
 `;
 
-export const LargeTextBig = styled.span`
-  font-size: 18pt;
+export const CustomFontSize = styled.span`
+  font-size: ${({ fontSize }) => fontSize};
 `;
 
-export const LargeTextBold = styled.span`
-  font-size: 14pt;
-  font-weight: bold;
-`;
-
-export const NormalTextBig = styled.span`
-  font-size: 17pt;
-`;
-
-export const NormalTextBold = styled.span`
-  font-size: 13pt;
-  font-weight: bold;
-`;
-
-export const Tag = styled.div`
+const Tag = styled.div`
   border-radius: ${({ theme }) => theme.borderRadius};
   color: white;
   font-weight: bold;
@@ -48,20 +33,19 @@ export const NotApplicable = styled.span`
   font-style: italic;
 `;
 
-export const ThreeColumnGrid = styled.div`
+const CommonGrid = styled.div`
   align-items: center;
   column-gap: 1rem;
   display: grid;
-  grid-template-columns: repeat(3, max-content);
   row-gap: 0.5rem;
 `;
 
-export const Grid = styled.div`
-  align-items: center;
-  column-gap: 1rem;
-  display: grid;
+export const ThreeColumnGrid = styled(CommonGrid)`
+  grid-template-columns: repeat(3, max-content);
+`;
+
+export const Grid = styled(CommonGrid)`
   grid-template-columns: repeat(4, max-content);
-  row-gap: 0.5rem;
 
   @media (max-width: 660px) {
     grid-template-columns: repeat(3, max-content);
@@ -74,25 +58,13 @@ export const Grid = styled.div`
 
 export const GridHeaderItem = styled.div`
   font-size: 0.8rem;
-  ${({ textAlign }) => textAlign && `text-align: ${textAlign}`};
-`;
-
-export const GridHeaderMain = styled.div`
-  font-weight: bold;
-  text-transform: uppercase;
 `;
 
 export const GridHeaderSub = styled.div`
-  font-size: 0.7rem;
-  font-style: italic;
   margin-top: -0.25rem;
 `;
 
-export const GridItem = styled.div`
-  ${({ textAlign }) => textAlign && `text-align: ${textAlign}`};
-`;
-
-export const Example = styled(GridItem)`
+export const Example = styled.div`
   align-items: center;
   background: ${({ background }) => background};
   border-radius: ${({ theme }) => theme.borderRadius};
@@ -100,22 +72,10 @@ export const Example = styled(GridItem)`
   padding: 0.5rem;
 `;
 
-export const Spacer = styled.span`
-  margin: 0 0.5rem;
-
-  &:after {
-    content: "\\2022";
-  }
-`;
-
 export const StyledInput = styled.input`
-  border: 1px solid ${({ borderColor }) => borderColor};
-  border-radius: ${({ theme }) => theme.borderRadius};
-  box-shadow: none;
-  box-sizing: border-box;
-  padding: 0.25rem;
-`;
-
-export const StyledIconWrapper = styled(IconWrapper)`
+  all: unset;
+  border: 1px solid ${({ color }) => color};
   color: ${({ color }) => color};
+  font-size: 0.875rem;
+  padding: 0.25rem 0.5rem;
 `;

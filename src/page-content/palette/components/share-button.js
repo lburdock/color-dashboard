@@ -2,12 +2,12 @@ import { useLocation } from "@reach/router";
 import copy from "copy-to-clipboard";
 import PropTypes from "prop-types";
 import React, { useEffect, useState } from "react";
+import { Icon, IconWrapper } from "../../../components/icon";
 import cn from "../../../utils/cn";
-import { Icon, IconWrapper } from "../../icon";
 
 const delay = 2000;
 const shareData = {
-  className: "is-link",
+  className: "is-link is-outlined",
   disabled: false,
   icon: "fas fa-share",
   text: "Share",

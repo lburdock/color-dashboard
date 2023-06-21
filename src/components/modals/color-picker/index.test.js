@@ -1,19 +1,26 @@
 import { render, fireEvent } from "@testing-library/react";
 import React from "react";
 import Modal from ".";
-import { RecentColorsProvider } from "../../../state/recent-colors-context";
+import { ColorProvider } from "../../../state/color-context";
+
+export const INITIAL_STATE = {
+  recent: ["#dde1e6"],
+  palette: [],
+  shade: [],
+  accessibility: [],
+};
 
 describe("Modal", () => {
   it("renders the modal", () => {
     const { getByTestId } = render(
-      <RecentColorsProvider initColors={["#dde1e6"]}>
+      <ColorProvider initialState={INITIAL_STATE}>
         <Modal
           data-testid="modal"
           closeModal={jest.fn()}
           onAddColor={jest.fn()}
           showModal
         />
-      </RecentColorsProvider>
+      </ColorProvider>
     );
     const modal = getByTestId("modal");
     expect(modal).toBeInTheDocument();
@@ -21,14 +28,14 @@ describe("Modal", () => {
 
   it("displays the color circle picker", () => {
     const { getByTitle } = render(
-      <RecentColorsProvider initColors={["#dde1e6"]}>
+      <ColorProvider initialState={INITIAL_STATE}>
         <Modal
           data-testid="modal"
           closeModal={jest.fn()}
           onAddColor={jest.fn()}
           showModal
         />
-      </RecentColorsProvider>
+      </ColorProvider>
     );
     const colorCircle = getByTitle("#dde1e6");
     expect(colorCircle).toBeInTheDocument();
@@ -36,13 +43,13 @@ describe("Modal", () => {
 
   it("hides the modal", () => {
     const { queryByTestId } = render(
-      <RecentColorsProvider initColors={["#dde1e6"]}>
+      <ColorProvider initialState={INITIAL_STATE}>
         <Modal
           data-testid="modal"
           closeModal={jest.fn()}
           onAddColor={jest.fn()}
         />
-      </RecentColorsProvider>
+      </ColorProvider>
     );
     const modal = queryByTestId("modal");
     expect(modal).not.toBeInTheDocument();
@@ -51,14 +58,14 @@ describe("Modal", () => {
   it("calls the close modal function on icon click", () => {
     const closeModal = jest.fn();
     const { getByLabelText } = render(
-      <RecentColorsProvider initColors={["#dde1e6"]}>
+      <ColorProvider initialState={INITIAL_STATE}>
         <Modal
           data-testid="modal"
           closeModal={closeModal}
           onAddColor={jest.fn()}
           showModal
         />
-      </RecentColorsProvider>
+      </ColorProvider>
     );
     const closeButton = getByLabelText("Close modal");
     fireEvent.click(closeButton);
@@ -68,14 +75,14 @@ describe("Modal", () => {
   it("calls the add color function on color selection", () => {
     const addColor = jest.fn();
     const { getByLabelText, getByTitle } = render(
-      <RecentColorsProvider initColors={["#dde1e6"]}>
+      <ColorProvider initialState={INITIAL_STATE}>
         <Modal
           data-testid="modal"
           closeModal={jest.fn()}
           onAddColor={addColor}
           showModal
         />
-      </RecentColorsProvider>
+      </ColorProvider>
     );
     const colorCircle = getByTitle("#dde1e6");
     fireEvent.click(colorCircle);

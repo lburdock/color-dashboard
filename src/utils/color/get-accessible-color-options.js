@@ -35,7 +35,13 @@ const getAccessibleColorOptions = ({ colors, contrast }) => {
       minGreaterLuminance
     );
     if (color) {
-      options.push(firstColorIsLighter ? [color, color1] : [color0, color]);
+      const optionItem = {
+        colors: firstColorIsLighter ? [color, color1] : [color0, color],
+        text: firstColorIsLighter
+          ? "Lighter background color"
+          : "Lighter foreground color",
+      };
+      options.push(optionItem);
     }
   }
 
@@ -53,7 +59,13 @@ const getAccessibleColorOptions = ({ colors, contrast }) => {
       maxLowerLuminance
     );
     if (color) {
-      options.push(firstColorIsLighter ? [color0, color] : [color, color1]);
+      const optionItem = {
+        colors: firstColorIsLighter ? [color0, color] : [color, color1],
+        text: firstColorIsLighter
+          ? "Darker foreground color"
+          : "Darker background color",
+      };
+      options.push(optionItem);
     }
   }
 

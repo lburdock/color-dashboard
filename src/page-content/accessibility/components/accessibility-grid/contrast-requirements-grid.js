@@ -1,17 +1,11 @@
 import PropTypes from "prop-types";
 import React from "react";
-import {
-  code,
-  GridHeaderItem,
-  GridItem,
-  NotApplicable,
-  ThreeColumnGrid,
-} from "./styles";
+import { GridHeaderItem, NotApplicable, ThreeColumnGrid } from "./styles";
 
 const columns = [
-  { text: "Type", align: "left" },
-  { text: "Level AA", align: "center" },
-  { text: "Level AAA", align: "center" },
+  { text: "Type" },
+  { text: "Level AA", alignClass: "has-text-centered" },
+  { text: "Level AAA", alignClass: "has-text-centered" },
 ];
 
 const rowData = [
@@ -48,15 +42,15 @@ const InfoGrid = props => {
   return (
     <ThreeColumnGrid {...props}>
       {columns.map(column => (
-        <GridHeaderItem key={column.text} textAlign={column.align}>
+        <GridHeaderItem key={column.text} className={column.alignClass}>
           {column.text}
         </GridHeaderItem>
       ))}
       {rowData.map(row => (
         <React.Fragment key={row.id}>
-          <GridItem>{row.type}</GridItem>
-          <GridItem textAlign="center">{row.aa}</GridItem>
-          <GridItem textAlign="center">{row.aaa}</GridItem>
+          <div>{row.type}</div>
+          <div className="has-text-centered">{row.aa}</div>
+          <div className="has-text-centered">{row.aaa}</div>
         </React.Fragment>
       ))}
     </ThreeColumnGrid>

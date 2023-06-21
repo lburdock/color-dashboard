@@ -7,18 +7,12 @@ import CardButton from "./card-button";
 
 const InfoSwatchWithPicker = ({
   className,
-  initColor,
+  color,
   name,
   onDelete,
   onUpdate,
 }) => {
-  const [color, setColor] = React.useState(initColor);
   const { closeModal, openModal, showModal } = useModalState();
-
-  const onAddColor = color => {
-    setColor(color);
-    onUpdate(color);
-  };
 
   return (
     <>
@@ -29,9 +23,9 @@ const InfoSwatchWithPicker = ({
         </footer>
       </InfoSwatch>
       <ColorPickerModal
-        initColor={initColor}
+        initColor={color}
         closeModal={closeModal}
-        onAddColor={onAddColor}
+        onAddColor={onUpdate}
         showModal={showModal}
       />
     </>
@@ -42,7 +36,7 @@ export default InfoSwatchWithPicker;
 
 InfoSwatchWithPicker.propTypes = {
   className: PropTypes.string,
-  initColor: PropTypes.string,
+  color: PropTypes.string,
   name: PropTypes.string,
   onDelete: PropTypes.func,
   onUpdate: PropTypes.func.isRequired,

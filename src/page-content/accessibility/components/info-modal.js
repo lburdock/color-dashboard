@@ -1,11 +1,11 @@
 import React from "react";
+import { InvisibleButton } from "../../../components/buttons";
+import { ExternalLink } from "../../../components/links";
+import { Icon, IconWrapper } from "../../../components/icon";
+import BasicModal from "../../../components/modals/basic";
 import useModalState from "../../../state/modal-hook";
 import cn from "../../../utils/cn";
-import { ContrastRequirementsGrid } from "../../accessibility-grid";
-import { InvisibleButton } from "../../buttons/invisible";
-import ExternalLink from "../../external-link";
-import { Icon, IconWrapper } from "../../icon";
-import BasicModal from "../../modals/basic";
+import { ContrastRequirementsGrid } from "./accessibility-grid";
 
 const Heading = ({ children, addSpace }) => (
   <h1 className={cn("is-5 has-text-weight-bold mb-3", addSpace && "mt-3")}>

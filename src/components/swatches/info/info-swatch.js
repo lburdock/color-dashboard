@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import React from "react";
 import cn from "../../../utils/cn";
 import InfoItem from "./info-item";
-import { ColorSwatch, StyledCard, StyledInfo, StyledName } from "./styles";
+import { ColorSwatch, StyledCard, StyledInfo } from "./styles";
 import { getHslText, getRgbText } from "./utils";
 
 const InfoSwatch = ({ children, className, colorString, name, ...props }) => {
@@ -12,7 +12,7 @@ const InfoSwatch = ({ children, className, colorString, name, ...props }) => {
     <StyledCard className={cn("card", className)} {...props}>
       <ColorSwatch colorString={colorString} />
       <StyledInfo className="card-content">
-        {name && <StyledName>{name}</StyledName>}
+        {name && <div className="has-text-weight-bold">{name}</div>}
         <InfoItem displayText={colorString} />
         <InfoItem hideMobile displayText={rgb.display} copyText={rgb.copy} />
         <InfoItem hideMobile displayText={hsl.display} copyText={hsl.copy} />

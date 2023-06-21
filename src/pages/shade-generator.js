@@ -1,12 +1,12 @@
 import React from "react";
 import Seo from "../components/layout/seo";
-import Palette from "../page-content/palette";
+import ShadeGenerator from "../page-content/shade-generator";
 
 const IndexPage = () => {
   return (
     <>
-      <Seo title="Palette" />
-      <Palette />
+      <Seo title="Shade generator" />
+      <ShadeGenerator />
     </>
   );
 };

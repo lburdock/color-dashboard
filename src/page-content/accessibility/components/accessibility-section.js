@@ -2,16 +2,21 @@ import PropTypes from "prop-types";
 import { getContrast, meetsContrastGuidelines } from "polished";
 import React from "react";
 import styled from "styled-components";
-import AccessibilityGrid from "../../accessibility-grid";
+import AccessibilityGrid from "./accessibility-grid";
 
 /**
  * Displays a horizontal section with colors on the left and the accessibility on the right
  */
-const AccessibilitySection = ({ children, colors, hasTopMargin }) => {
+const AccessibilitySection = ({
+  children,
+  colors,
+  hasTopMargin,
+  label = "Colors",
+}) => {
   return (
     <Level hasTopMargin={hasTopMargin}>
       <div>
-        <Label>Colors</Label>
+        <Label>{label}</Label>
         <div className="is-align-items-center is-flex is-flex-wrap-nowrap">
           {children}
         </div>
@@ -43,6 +48,7 @@ AccessibilitySection.propTypes = {
   children: PropTypes.node.isRequired,
   colors: PropTypes.arrayOf(PropTypes.string).isRequired,
   hasTopMargin: PropTypes.bool,
+  label: PropTypes.string,
 };
 
 const AutoWidthBox = styled.div`
@@ -50,9 +56,9 @@ const AutoWidthBox = styled.div`
 `;
 
 const Label = styled.div`
-  border-top: 1px solid #b3b3b3;
+  border-top: 1px solid #999;
   color: #4a4a4a;
-  font-size: 0.8rem;
+  font-size: 0.875rem;
   padding: 0.25rem 0;
   text-transform: uppercase;
 `;
@@ -63,14 +69,7 @@ const Level = styled.div`
 
   ${({ hasTopMargin }) => (hasTopMargin ? "margin-top: 5rem;" : "")};
 
-  & > *:not(:last-child) {
-    margin-right: 1rem;
-  }
-
   @media (max-width: 1215px) {
     flex-direction: column;
-    & > *:not(:last-child) {
-      margin-right: 0;
-    }
   }
 `;

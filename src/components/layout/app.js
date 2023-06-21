@@ -1,21 +1,20 @@
 import React from "react";
+import { createGlobalStyle } from "styled-components";
 import PropTypes from "prop-types";
-import { RecentColorsProvider } from "../../state/recent-colors-context";
-import useSearchParameters from "../../state/search-parameters-hook";
+import { ColorProvider } from "../../state/color-context";
 import ThemeProvider from "../../state/theme";
 import Navbar from "./navbar";
 
 import "bulma/css/bulma.css";
 
 const App = ({ children }) => {
-  const colors = useSearchParameters();
-
   return (
     <ThemeProvider>
-      <RecentColorsProvider initColors={colors}>
+      <ColorProvider>
+        <GlobalStyle />
         <Navbar />
         <main>{children}</main>
-      </RecentColorsProvider>
+      </ColorProvider>
     </ThemeProvider>
   );
 };
@@ -23,5 +22,11 @@ const App = ({ children }) => {
 App.propTypes = {
   children: PropTypes.node.isRequired,
 };
+
+const GlobalStyle = createGlobalStyle`
+  html {
+    background: ${({ theme }) => theme.colors.lightBackground};
+  }
+`;
 
 export default App;

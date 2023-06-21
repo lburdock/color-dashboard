@@ -1,19 +1,32 @@
-import { Link } from "gatsby";
 import React from "react";
+import { useLocation } from "@reach/router";
 import styled from "styled-components";
+import logoSvg from "../../images/palette-solid.svg";
 import cn from "../../utils/cn";
-import ExternalLink from "../external-link";
+import { ExternalLink, NavLink } from "../links";
 import { Icon, IconWrapper } from "../icon";
-import Logo from "../logo";
+import { useColorState } from "../../state/color-context";
+import {
+  formatColorSearchParams,
+  getColorsFromSearchParams,
+} from "../../utils/routing";
 
-const disableCurrentTab = ({ isCurrent }) =>
-  isCurrent ? { "aria-disabled": "true" } : {};
+const getHref = ({ to, colors: existingColors = [], limit, search }) => {
+  const colorArray = existingColors?.length
+    ? existingColors
+    : getColorsFromSearchParams(search);
+  const truncatedColors = limit ? colorArray.slice(0, limit) : colorArray;
+  return `${to}${formatColorSearchParams(truncatedColors)}`;
+};
 
 /**
  * Renders the app's navigation bar
  */
 const Navbar = () => {
   const [showMenu, setShowMenu] = React.useState(false);
+  const { palette, shade, accessibility } = useColorState();
+  const { search } = useLocation();
+
   return (
     <Nav
       aria-label="main navigation"
@@ -21,11 +34,11 @@ const Navbar = () => {
       role="navigation"
     >
       <div className="navbar-brand">
-        <Link className="navbar-item logo" getProps={disableCurrentTab} to="/">
-          <Logo />
-        </Link>
+        <NavLink className="logo" to="/">
+          <StyledImg alt="Color Dashboard" size="28px" src={logoSvg} />
+        </NavLink>
 
-        <MenuButton
+        <button
           aria-expanded={showMenu}
           aria-label="menu"
           className={cn("navbar-burger burger", showMenu && "is-active")}
@@ -36,21 +49,34 @@ const Navbar = () => {
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
-        </MenuButton>
+        </button>
       </div>
 
       <div className={cn("navbar-menu", showMenu && "is-active")}>
         <div className="navbar-start">
-          <Link className="navbar-item" getProps={disableCurrentTab} to="/">
-            Home
-          </Link>
-          <Link
-            className="navbar-item"
-            getProps={disableCurrentTab}
-            to="/accessibility"
+          <NavLink to={getHref({ to: "/", colors: palette, search })}>
+            Palette
+          </NavLink>
+          <NavLink
+            to={getHref({
+              to: "/accessibility",
+              colors: accessibility,
+              limit: 2,
+              search,
+            })}
           >
             Accessibility
-          </Link>
+          </NavLink>
+          <NavLink
+            to={getHref({
+              to: "/shade-generator",
+              colors: shade,
+              limit: 1,
+              search,
+            })}
+          >
+            Shade generator
+          </NavLink>
         </div>
 
         <div className="navbar-end">
@@ -88,16 +114,7 @@ const Nav = styled.nav`
   }
 `;
 
-const MenuButton = styled.button`
-  background: none;
-  border: none;
-  color: inherit;
-  cursor: pointer;
-  font: inherit;
-  line-height: 1;
-  padding: 0;
-
-  &:focus {
-    outline: 0;
-  }
+const StyledImg = styled.img`
+  height: ${({ size }) => size};
+  width: auto;
 `;
