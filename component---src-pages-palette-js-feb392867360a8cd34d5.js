@@ -1,2 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[6],{Em3A:function(e,t,n){"use strict";n.r(t);var a=n("q1tI"),l=n.n(a),r=n("phMG"),c=n("hJsg");t.default=function(){return l.a.createElement(l.a.Fragment,null,l.a.createElement(r.a,{title:"Palette"}),l.a.createElement(c.a,null))}}}]);
-//# sourceMappingURL=component---src-pages-palette-js-feb392867360a8cd34d5.js.map
